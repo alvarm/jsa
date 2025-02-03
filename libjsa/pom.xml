@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>libjsa</artifactId>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

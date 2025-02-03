@@ -1,3 +1,4 @@
+
 /*
  * MIT License
  *
@@ -17,16 +18,14 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.github.alvarm;
+package com.github.alvarm.jsa;
 
-import org.junit.jupiter.api.Test;
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(greeting());
+    }
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class MainTest {
-
-    @Test
-    void greeting() {
-        assertEquals("Hello, World!", Main.greeting());
+    public static String greeting() {
+        return "Hello, World!";
     }
 }

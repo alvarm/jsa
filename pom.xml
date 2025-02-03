@@ -7,6 +7,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>libjsa</module>
+        <module>benchmarks</module>
     </modules>
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

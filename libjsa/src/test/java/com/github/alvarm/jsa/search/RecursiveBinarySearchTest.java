@@ -71,7 +71,7 @@ class RecursiveBinarySearchTest {
     @Test
     void testSearchFloatEpsilon() {
         float[] array = RandomArrayUtils.generateRandomArray(100, 0.0f, 1000.0f);
-        float epsilon = 0.005f;
+        float epsilon = 1e-5f;
         Arrays.sort(array);
         for (int i = 0; i < array.length; i++) {
             int pos = RecursiveBinarySearch.search(array, array[i], epsilon);
@@ -98,7 +98,7 @@ class RecursiveBinarySearchTest {
     @Test
     void testSearchDoubleEpsilon() {
         double[] array = RandomArrayUtils.generateRandomArray(100L, 0.0, 1000.0);
-        double epsilon = 0.005;
+        double epsilon = 1e-5;
         Arrays.sort(array);
         for (int i = 0; i < array.length; i++) {
             int pos = RecursiveBinarySearch.search(array, array[i], epsilon);

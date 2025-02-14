@@ -65,7 +65,7 @@ class LinearSearchTest {
     @Test
     void testSearchFloatEpsilon() {
         float[] array = RandomArrayUtils.generateRandomArray(100, 0.0f, 1000.0f);
-        float epsilon = 0.005f;
+        float epsilon = 1e-5f;
         for (int i = 0; i < array.length; i++) {
             int pos = LinearSearch.search(array, array[i], epsilon);
             if (pos != i) {
@@ -90,7 +90,7 @@ class LinearSearchTest {
     @Test
     void testSearchDoubleEpsilon() {
         double[] array = RandomArrayUtils.generateRandomArray(100L, 0.0, 1000.0);
-        double epsilon = 0.005;
+        double epsilon = 1e-5;
         for (int i = 0; i < array.length; i++) {
             int pos = LinearSearch.search(array, array[i], epsilon);
             if(pos != i) {

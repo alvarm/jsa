@@ -52,7 +52,7 @@ class LinearSearchTest {
 
     @Test
     void testSearchFloat() {
-        float[] array = RandomArrayUtils.generateRandomArray(100, 0.0f, 1000.0f);
+        float[] array = RandomArrayUtils.generateFloatRandomArray(100, 0, 1000);
         for (int i = 0; i < array.length; i++) {
             int pos = LinearSearch.search(array, array[i]);
             if(pos != i) {
@@ -64,7 +64,7 @@ class LinearSearchTest {
 
     @Test
     void testSearchFloatEpsilon() {
-        float[] array = RandomArrayUtils.generateRandomArray(100, 0.0f, 1000.0f);
+        float[] array = RandomArrayUtils.generateFloatRandomArray(100, 0, 1000);
         float epsilon = 1e-5f;
         for (int i = 0; i < array.length; i++) {
             int pos = LinearSearch.search(array, array[i], epsilon);
@@ -77,7 +77,7 @@ class LinearSearchTest {
 
     @Test
     void testSearchDouble() {
-        double[] array = RandomArrayUtils.generateRandomArray(100L, 0.0, 1000.0);
+        double[] array = RandomArrayUtils.generateDoubleRandomArray(100L, 0, 1000);
         for (int i = 0; i < array.length; i++) {
             int pos = LinearSearch.search(array, array[i]);
             if(pos != i) {
@@ -89,7 +89,7 @@ class LinearSearchTest {
 
     @Test
     void testSearchDoubleEpsilon() {
-        double[] array = RandomArrayUtils.generateRandomArray(100L, 0.0, 1000.0);
+        double[] array = RandomArrayUtils.generateDoubleRandomArray(100L, 0, 1000);
         double epsilon = 1e-5;
         for (int i = 0; i < array.length; i++) {
             int pos = LinearSearch.search(array, array[i], epsilon);

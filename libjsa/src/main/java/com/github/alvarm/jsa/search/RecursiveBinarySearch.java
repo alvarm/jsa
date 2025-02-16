@@ -38,7 +38,7 @@ public class RecursiveBinarySearch {
      * @since 1.0
      */
     public static int search(int[] array, int target) {
-        return search(array, target, 0, array.length);
+        return search(array, target, 0, array.length - 1);
     }
 
     /**
@@ -57,16 +57,17 @@ public class RecursiveBinarySearch {
      * @since 1.0
      */
     private static int search(int[] array, int target, int start, int end) {
-        if (start >= end) {
-            return -1;
+        if (start > end) {
+            return ~start;//return -1;
         }
-        final int middle = (start + end) / 2;
-        if (target == array[middle]) {
-            return middle;
-        } else if (target < array[middle]) {
-            return search(array, target, start, middle);
-        } else {
+        final int middle = (start + end) >> 1;
+        final int midVal = array[middle];
+        if(target < midVal) {
+            return search(array, target, start, middle - 1);
+        } else if (target > midVal) {
             return search(array, target, middle + 1, end);
+        } else {
+            return middle;
         }
     }
 
@@ -84,7 +85,7 @@ public class RecursiveBinarySearch {
      * @since 1.0
      */
     public static int search(long[] array, long target) {
-        return search(array, target, 0, array.length);
+        return search(array, target, 0, array.length - 1);
     }
 
     /**
@@ -103,16 +104,17 @@ public class RecursiveBinarySearch {
      * @since 1.0
      */
     private static int search(long[] array, long target, int start, int end) {
-        if (start >= end) {
-            return -1;
+        if (start > end) {
+            return ~start;
         }
-        final int middle = (start + end) / 2;
-        if (target == array[middle]) {
-            return middle;
-        } else if (target < array[middle]) {
-            return search(array, target, start, middle);
+        final int middle = (start + end) >> 1;
+        final long midVal = array[middle];
+        if (target < midVal) {
+            return search(array, target, start, middle - 1);
+        } else if (target > midVal) {
+            return search(array, target, middle + 1, end);
         } else {
-            return search(array, target,middle + 1, end);
+            return middle;
         }
     }
 
@@ -130,7 +132,7 @@ public class RecursiveBinarySearch {
      * @since 1.0
      */
     public static int search(float[] array, float target) {
-        return search(array, target, 0, array.length, Utils.getFloatEpsilon());
+        return search(array, target, 0, array.length - 1, Utils.getFloatEpsilon());
     }
 
     /**
@@ -148,7 +150,7 @@ public class RecursiveBinarySearch {
      * @since 1.0
      */
     public static int search(float[] array, float target, float epsilon) {
-        return search(array, target, 0, array.length, epsilon);
+        return search(array, target, 0, array.length - 1, epsilon);
     }
 
     /**
@@ -168,16 +170,20 @@ public class RecursiveBinarySearch {
      * @since 1.0
      */
     private static int search(float[] array, float target, int start, int end, float epsilon) {
-        if (start >= end) {
-            return -1;
+        if (start > end) {
+            return ~start;
         }
-        final int middle = (start + end) / 2;
-        if (Math.abs(target - array[middle]) < epsilon) {
-            return middle;
-        } else if (target < array[middle]) {
-            return search(array, target, start, middle, epsilon);
+        final int middle = (start + end) >> 1;
+        final float midVal = array[middle];
+        boolean isEquals = Math.abs(target - midVal) < epsilon;
+        if(!isEquals) {
+            if(target < midVal) {
+                return search(array, target, start, middle - 1, epsilon);
+            } else {
+                return search(array, target, middle + 1, end, epsilon);
+            }
         } else {
-            return search(array, target, middle + 1, end, epsilon);
+            return middle;
         }
     }
 
@@ -195,7 +201,7 @@ public class RecursiveBinarySearch {
      * @since 1.0
      */
     public static int search(double[] array, double target) {
-        return search(array, target, 0, array.length, Utils.getDoubleEpsilon());
+        return search(array, target, 0, array.length - 1, Utils.getDoubleEpsilon());
     }
 
     /**
@@ -213,7 +219,7 @@ public class RecursiveBinarySearch {
      * @since 1.0
      */
     public static int search(double[] array, double target, double epsilon) {
-        return search(array, target, 0, array.length, epsilon);
+        return search(array, target, 0, array.length - 1, epsilon);
     }
 
     /**
@@ -233,16 +239,20 @@ public class RecursiveBinarySearch {
      * @since 1.0
      */
     private static int search(double[] array, double target, int start, int end, double epsilon) {
-        if (start >= end) {
-            return -1;
+        if (start > end) {
+            return ~start;
         }
-        final int middle = (start + end) / 2;
-        if (Math.abs(target - array[middle]) < epsilon) {
-            return middle;
-        } else if (target < array[middle]) {
-            return search(array, target, start, middle, epsilon);
+        final int middle = (start + end) >> 1;
+        final double midVal = array[middle];
+        boolean isEquals = Math.abs(target - midVal) < epsilon;
+        if (!isEquals) {
+            if(target < midVal) {
+                return search(array, target, start, middle - 1, epsilon);
+            } else {
+                return search(array, target, middle + 1, end, epsilon);
+            }
         } else {
-            return search(array, target, middle + 1, end, epsilon);
+            return middle;
         }
     }
 
@@ -262,7 +272,7 @@ public class RecursiveBinarySearch {
      * @see Comparable
      */
     public static <E extends Comparable<E>> int search(E[] array, E target) {
-        return search(array, target, 0, array.length);
+        return search(array, target, 0, array.length - 1);
     }
 
     /**
@@ -283,17 +293,17 @@ public class RecursiveBinarySearch {
      * @see Comparable
      */
     private static <E extends Comparable<E>> int search(E[] array, E target, int start, int end) {
-        if (start >= end) {
-            return -1;
+        if (start > end) {
+            return ~start;
         }
-        final int middle = (start + end) / 2;
+        final int middle = (start + end) >> 1;
         final int compare = target.compareTo(array[middle]);
-        if (compare == 0) {
-            return middle;
-        } else if (compare < 0) {
-            return search(array, target, start, middle);
+        if(compare < 0) {
+            return search(array, target, start, middle - 1);
+        } else if (compare > 0)  {
+            return search(array, target, middle + 1, end);
         } else {
-            return search(array, target,middle + 1, end);
+            return middle;
         }
     }
 
@@ -314,7 +324,7 @@ public class RecursiveBinarySearch {
      * @see Comparator
      */
     public static <E> int search(E[] array, E target, Comparator<E> comparator) {
-        return search(array, target, 0, array.length, comparator);
+        return search(array, target, 0, array.length - 1, comparator);
     }
 
     /**
@@ -336,17 +346,17 @@ public class RecursiveBinarySearch {
      * @see Comparator
      */
     private static <E> int search(E[] array, E target, int start, int end, Comparator<E> comparator) {
-        if (start >= end) {
-            return -1;
+        if (start > end) {
+            return ~start;
         }
-        final int middle = (start + end) / 2;
+        final int middle = (start + end) >> 1;
         final int compare = comparator.compare(target, array[middle]);
-        if (compare == 0) {
-            return middle;
-        } else if (compare < 0) {
-            return search(array, target, start, middle, comparator);
+        if(compare < 0) {
+            return search(array, target, start, middle - 1, comparator);
+        } else if (compare > 0) {
+            return search(array, target, middle + 1, end, comparator);
         } else {
-            return search(array, target,middle + 1, end, comparator);
+            return middle;
         }
     }
 }

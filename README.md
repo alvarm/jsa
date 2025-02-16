@@ -12,10 +12,10 @@ Benchmark consisted in searching for a random integer value in a sorted randomly
 
 | Benchmark             | Mode | Cnt | Score       | Error         | Units |
 |-----------------------|------|-----|-------------|---------------|-------|
-| javaSearch            | avgt | 25  | 22,058      | +/-     2,007 | ns/op |
-| iterativeBinarySearch | avgt | 25  | 27,803      | +/-     1,405 | ns/op |
-| recursiveBinarySearch | avgt | 25  | 36,378      | +/-     1,158 | ns/op |
-| linearSearch          | avgt | 25  | 2844973,895 | +/- 48339,110 | ns/op |
+| iterativeBinarySearch | avgt | 25  | 19,106      | +/-     0,837 | ns/op |
+| javaSearch            | avgt | 25  | 20,082      | +/-     2,406 | ns/op |
+| recursiveBinarySearch | avgt | 25  | 29,204      | +/-     0,740 | ns/op |
+| linearSearch          | avgt | 25  | 2809249,139 | +/- 22701,995 | ns/op |
 
 
 ### Sorting

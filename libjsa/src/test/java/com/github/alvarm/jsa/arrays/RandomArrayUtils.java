@@ -34,14 +34,16 @@ public class RandomArrayUtils {
         return rng.longs(size, lowerLimit, upperLimit).toArray();
     }
 
-    public static double[] generateRandomArray(long size, double lowerLimit, double upperLimit) {
-        return rng.doubles(size, lowerLimit, upperLimit).toArray();
+    public static double[] generateDoubleRandomArray(long size, int lowerLimit, int upperLimit) {
+        return rng.ints(size, lowerLimit, upperLimit)
+                .mapToDouble(Double::valueOf)
+                .toArray();
     }
 
-    public static float[] generateRandomArray(int size, float lowerLimit, float upperLimit) {
-        float[] array = new float[size];
+    public static float[] generateFloatRandomArray(int size, int lowerLimit, int upperLimit) {
+       float[] array = new float[size];
         for (int i = 0; i < size; i++) {
-            array[i] = rng.nextFloat(lowerLimit, upperLimit);
+            array[i] = rng.nextInt(lowerLimit, upperLimit);
         }
         return array;
     }

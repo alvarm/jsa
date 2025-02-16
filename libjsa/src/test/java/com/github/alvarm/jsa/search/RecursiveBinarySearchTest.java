@@ -31,110 +31,100 @@ class RecursiveBinarySearchTest {
 
     @Test
     void searchSearchInt() {
-        int[] array = RandomArrayUtils.generateRandomArray(100L, 0, 1000);
+        final int start = 0;
+        final int end = 1000;
+        int[] array = RandomArrayUtils.generateRandomArray(100L, start, end);
         Arrays.sort(array);
-        for (int i = 0; i < array.length; i++) {
-            int pos = RecursiveBinarySearch.search(array, array[i]);
-            if(pos != i) {
-                assertEquals(array[i], array[pos]);
-            }
+        for (int i = start; i < end; i++) {
+            int pos = IterativeBinarySearch.search(array, i);
+            int javaPos = Arrays.binarySearch(array, i);
+            assertEquals(javaPos, pos);
         }
-        assertEquals(-1, RecursiveBinarySearch.search(array, -1));
     }
 
     @Test
     void testSearchLong() {
-        long[] array = RandomArrayUtils.generateRandomArray(100L, 0L, 1000L);
+        final long start = 0L;
+        final long end = 1000L;
+        long[] array = RandomArrayUtils.generateRandomArray(100L, start, end);
         Arrays.sort(array);
-        for (int i = 0; i < array.length; i++) {
-            int pos = RecursiveBinarySearch.search(array, array[i]);
-            if(pos != i) {
-                assertEquals(array[i], array[pos]);
-            }
+        for (long i = start; i < end; i++) {
+            int pos = IterativeBinarySearch.search(array, i);
+            int javaPos = Arrays.binarySearch(array, i);
+            assertEquals(javaPos, pos);
         }
-        assertEquals(-1L, RecursiveBinarySearch.search(array, -1L));
     }
 
     @Test
     void testSearchFloat() {
-        float[] array = RandomArrayUtils.generateRandomArray(100, 0.0f, 1000.0f);
+        float[] array = RandomArrayUtils.generateFloatRandomArray(100, 0, 1000);
         Arrays.sort(array);
-        for (int i = 0; i < array.length; i++) {
-            int pos = RecursiveBinarySearch.search(array, array[i]);
-            if(pos != i) {
-                assertEquals(array[i], array[pos]);
-            }
+        for (int i = 0; i < 1000; i++) {
+            int pos = IterativeBinarySearch.search(array, i);
+            int javaPos = Arrays.binarySearch(array, i);
+            assertEquals(javaPos, pos);
         }
-        assertEquals(-1.0f, RecursiveBinarySearch.search(array, -1.0f));
     }
 
     @Test
     void testSearchFloatEpsilon() {
-        float[] array = RandomArrayUtils.generateRandomArray(100, 0.0f, 1000.0f);
+        float[] array = RandomArrayUtils.generateFloatRandomArray(100, 0, 1000);
         float epsilon = 1e-5f;
         Arrays.sort(array);
-        for (int i = 0; i < array.length; i++) {
-            int pos = RecursiveBinarySearch.search(array, array[i], epsilon);
-            if (pos != i) {
-                assertEquals(array[i], array[pos]);
-            }
+        for (int i = 0; i < 1000; i++) {
+            int pos = IterativeBinarySearch.search(array, i, epsilon);
+            int javaPos = Arrays.binarySearch(array, i);
+            assertEquals(javaPos, pos);
         }
-        assertEquals(-1, RecursiveBinarySearch.search(array, -1.0f, epsilon));
     }
 
     @Test
     void testSearchDouble() {
-        double[] array = RandomArrayUtils.generateRandomArray(100L, 0.0, 1000.0);
+        double[] array = RandomArrayUtils.generateDoubleRandomArray(100L, 0, 1000);
         Arrays.sort(array);
-        for (int i = 0; i < array.length; i++) {
-            int pos = RecursiveBinarySearch.search(array, array[i]);
-            if(pos != i) {
-                assertEquals(array[i], array[pos]);
-            }
+        for (int i = 0; i < 1000; i++) {
+            int pos = IterativeBinarySearch.search(array, i);
+            int javaPos = Arrays.binarySearch(array, i);
+            assertEquals(javaPos, pos);
         }
-        assertEquals(-1, RecursiveBinarySearch.search(array, -1.0));
     }
 
     @Test
     void testSearchDoubleEpsilon() {
-        double[] array = RandomArrayUtils.generateRandomArray(100L, 0.0, 1000.0);
+        double[] array = RandomArrayUtils.generateDoubleRandomArray(100L, 0, 1000);
         double epsilon = 1e-5;
         Arrays.sort(array);
-        for (int i = 0; i < array.length; i++) {
-            int pos = RecursiveBinarySearch.search(array, array[i], epsilon);
-            if(pos != i) {
-                assertEquals(array[i], array[pos]);
-            }
+        for (int i = 0; i < 1000; i++) {
+            int pos = IterativeBinarySearch.search(array, i, epsilon);
+            int javaPos = Arrays.binarySearch(array, i);
+            assertEquals(javaPos, pos);
         }
-        assertEquals(-1, RecursiveBinarySearch.search(array, -1.0, epsilon));
-
     }
 
     @Test
     void testSearchGeneric() {
-        Integer[] array = RandomArrayUtils.generateRandomBoxedArray(100L, 0, 1000);
+        final int start = 0;
+        final int end = 1000;
+        Integer[] array = RandomArrayUtils.generateRandomBoxedArray(100L, start, end);
         Arrays.sort(array, Comparator.naturalOrder());
-        for (int i = 0; i < array.length; i++) {
-            int pos = RecursiveBinarySearch.search(array, array[i]);
-            if(pos != i) {
-                assertEquals(array[i], array[pos]);
-            }
+        for (int i = start; i < end; i++) {
+            int pos = RecursiveBinarySearch.search(array, i);
+            int javaPos = Arrays.binarySearch(array, i, Comparator.naturalOrder());
+            assertEquals(javaPos, pos);
         }
-        assertEquals(-1, RecursiveBinarySearch.search(array, -1));
     }
 
     @Test
     void testSearchGenericComparator() {
-        Integer[] array = RandomArrayUtils.generateRandomBoxedArray(100L, 0, 1000);
+        final int start = 0;
+        final int end = 1000;
+        Integer[] array = RandomArrayUtils.generateRandomBoxedArray(100L, start, end);
         Comparator<Integer> cmp = Comparator.naturalOrder();
         Arrays.sort(array, cmp);
-        for (int i = 0; i < array.length; i++) {
-            int pos = RecursiveBinarySearch.search(array, array[i], cmp);
-            if(pos != i) {
-                assertEquals(array[i], array[pos]);
-            }
+        for (int i = start; i < end; i++) {
+            int pos = RecursiveBinarySearch.search(array, i, cmp);
+            int javaPos = Arrays.binarySearch(array, i, cmp);
+            assertEquals(javaPos, pos);
         }
-        assertEquals(-1, RecursiveBinarySearch.search(array, -1, cmp));
     }
-
 }

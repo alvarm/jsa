@@ -50,19 +50,19 @@ public class IterativeBinarySearch {
      */
     public static int search(int[] array, int target) {
         int start = 0;
-        int end = array.length;
-        int middle;
-        while(start < end) {
-            middle = (start + end) / 2;
-            if( target == array[middle]) {
-                return middle;
-            } else if(target < array[middle]) {
-                end = middle;
-            } else {
+        int end = array.length - 1;
+        while(start <= end) {
+            int middle = (start + end) >> 1;
+            int midVal = array[middle];
+            if(target < midVal) {
+                end = middle - 1;
+            } else if (target > midVal) {
                 start = middle + 1;
+            } else {
+                return middle;
             }
         }
-        return -1;
+        return ~start;
     }
 
     /**
@@ -79,19 +79,19 @@ public class IterativeBinarySearch {
      */
     public static int search(long[] array, long target) {
         int start = 0;
-        int end = array.length;
-        int middle;
-        while(start < end) {
-            middle = (start + end) / 2;
-            if( target == array[middle]) {
-                return middle;
-            } else if(target < array[middle]) {
-                end = middle;
-            } else {
+        int end = array.length - 1;
+        while(start <= end) {
+            int middle = (start + end) >> 1;
+            long midVal = array[middle];
+            if(target < midVal) {
+                end = middle - 1;
+            } else if(target > midVal){
                 start = middle + 1;
+            } else {
+                return middle;
             }
         }
-        return -1;
+        return ~start;
     }
 
     /**
@@ -109,19 +109,22 @@ public class IterativeBinarySearch {
      */
     public static int search(float[] array, float target, float epsilon) {
         int start = 0;
-        int end = array.length;
-        int middle;
-        while(start < end) {
-            middle = (start + end) / 2;
-            if( Math.abs(target - array[middle]) < epsilon) {
-                return middle;
-            } else if(target < array[middle]) {
-                end = middle;
+        int end = array.length - 1;
+        while(start <= end) {
+            int middle = (start + end) >> 1;
+            float midVal = array[middle];
+            boolean isEquals = Math.abs(target - midVal) < epsilon;
+            if (!isEquals) {
+                if (target < midVal) {
+                    end = middle - 1;
+                } else {
+                    start = middle + 1;
+                }
             } else {
-                start = middle + 1;
+                return middle;
             }
         }
-        return -1;
+        return ~start;
     }
 
     /**
@@ -155,19 +158,22 @@ public class IterativeBinarySearch {
      */
     public static int search(double[] array, double target, double epsilon) {
         int start = 0;
-        int end = array.length;
-        int middle;
-        while(start < end) {
-            middle = (start + end) / 2;
-            if( Math.abs(target - array[middle]) < epsilon) {
-                return middle;
-            } else if(target < array[middle]) {
-                end = middle;
+        int end = array.length - 1;
+        while(start <= end) {
+            int middle = (start + end) >> 1;
+            double midVal = array[middle];
+            boolean isEquals = Math.abs(target - midVal) < epsilon;
+            if(!isEquals) {
+                if(target < midVal) {
+                    end = middle - 1;
+                } else {
+                    start = middle + 1;
+                }
             } else {
-                start = middle + 1;
+                return middle;
             }
         }
-        return -1;
+        return ~start;
     }
 
     /**
@@ -202,20 +208,19 @@ public class IterativeBinarySearch {
      */
     public static <E extends Comparable<E>> int search(E[] array, E target) {
         int start = 0;
-        int end = array.length;
-        int middle;
-        while(start < end) {
-            middle = (start + end) / 2;
+        int end = array.length - 1;
+        while(start <= end) {
+            int middle = (start + end) >> 1;
             int compare = target.compareTo(array[middle]);
-            if(compare == 0) {
-                return middle;
-            } else if(compare < 0) {
-                end = middle;
-            } else {
+            if(compare < 0) {
+                end = middle - 1;
+            } else if (compare > 0) {
                 start = middle + 1;
+            } else {
+                return middle;
             }
         }
-        return -1;
+        return ~start;
     }
 
     /**
@@ -235,20 +240,18 @@ public class IterativeBinarySearch {
      */
     public static <E> int search(E[] array, E target, Comparator<E> comparator) {
         int start = 0;
-        int end = array.length;
-        int middle;
-        while(start < end) {
-            middle = (start + end) / 2;
+        int end = array.length - 1;
+        while(start <= end) {
+            int middle = (start + end) >> 1;
             int compare = comparator.compare(target, array[middle]);
-            if(compare == 0) {
-                return middle;
-            } else if(compare < 0) {
-                end = middle;
-            } else {
+            if(compare < 0) {
+                end = middle - 1;
+            } else if (compare > 0) {
                 start = middle + 1;
+            } else {
+                return middle;
             }
         }
-        return -1;
+        return ~start;
     }
-
 }
